@@ -31,6 +31,7 @@ const Header = () => {
         withCredentials: true,
       });
       toast.success(data.message);
+      setToggle(false);
       navigater("/sign-in");
     } catch (error) {
       console.log(error);
@@ -43,19 +44,23 @@ const Header = () => {
     setToggle(!toggle);
   };
 
+  const handleLinkClick = () => {
+    setToggle(false);
+  };
+
   return (
     <header className="userheader">
       <div className="header-user-containre">
         <div className="header-user-inner">
           <div>
-            <Link to="/">
+            <Link to="/" onClick={handleLinkClick}>
               <img src={logo} className="logoimg" />
             </Link>
           </div>
           <div className={toggle ? "menu open" : "menu"}>
             <ul className="header-user-inner-list">
               <li>
-                <Link to="/">
+                <Link to="/" onClick={handleLinkClick}>
                   <div className="icon">
                     <FaHome />
                   </div>
@@ -63,7 +68,7 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/items">
+                <Link to="/items" onClick={handleLinkClick}>
                   <div className="icon">
                     <FaDatabase />
                   </div>
@@ -71,7 +76,7 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/about">
+                <Link to="/about" onClick={handleLinkClick}>
                   <div className="icon">
                     <FaListAlt />
                   </div>
@@ -79,7 +84,7 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/contact">
+                <Link to="/contact" onClick={handleLinkClick}>
                   <div className="icon">
                     <IoIosCall />
                   </div>
@@ -88,7 +93,7 @@ const Header = () => {
               </li>
               {userData?.role == "admin" && (
                 <li>
-                  <Link to="/admin-dashboard">
+                  <Link to="/admin-dashboard" onClick={handleLinkClick}>
                     <div className="icon">
                       <MdDashboard />
                     </div>
@@ -99,14 +104,14 @@ const Header = () => {
             </ul>
             <ul className="header-user-inner-list list">
               <li>
-                <Link to="/likes">
+                <Link to="/likes" onClick={handleLinkClick}>
                   <FaHeart size={20} />
                   <p className="icon">Like</p>
                 </Link>
               </li>
               {userData?.role == "admin" && (
                 <li>
-                  <Link to="/add-item">
+                  <Link to="/add-item" onClick={handleLinkClick}>
                     <FaPlus />
                     <div className="icon">
                       <p>Add Food Item</p>
@@ -116,7 +121,7 @@ const Header = () => {
               )}
 
               <li>
-                <Link to="/my-orders">
+                <Link to="/my-orders" onClick={handleLinkClick}>
                   <FaClipboardList size={21} />
                   <div className="icon">
                     <p className="icon">My Order</p>
@@ -125,7 +130,7 @@ const Header = () => {
               </li>
               {userData?.role == "user" && (
                 <li>
-                  <Link to="/cart">
+                  <Link to="/cart" onClick={handleLinkClick}>
                     <FaCartPlus size={21} />
                     <span>{cartItem?.length || 0}</span>
                     <div className="icon">
@@ -136,8 +141,8 @@ const Header = () => {
               )}
 
               <li onClick={handleLogOut}>
-                  <MdLogout size={20} />
-                  <p className="icon">Log out</p>
+                <MdLogout size={20} />
+                <p className="icon">Log out</p>
               </li>
             </ul>
           </div>
