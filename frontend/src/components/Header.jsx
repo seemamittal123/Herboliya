@@ -135,11 +135,9 @@ const Header = () => {
                 </li>
               )}
 
-              <li>
-                <button type="button" onClick={handleLogOut}>
+              <li onClick={handleLogOut}>
                   <MdLogout size={20} />
                   <p className="icon">Log out</p>
-                </button>
               </li>
             </ul>
           </div>
