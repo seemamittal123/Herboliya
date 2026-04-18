@@ -1,0 +1,125 @@
+
+ @use "./variable.scss" as *;
+
+.footer {
+  background: $bg-2;
+  color: #fff;
+  padding: 100px 80px 20px;
+
+  .footer-container {
+    display: flex; // changed from grid → flex
+    justify-content: space-between;
+    flex-wrap: wrap; // important for responsiveness
+    gap: 40px;
+  }
+
+  .footer-left {
+    flex: 1 1 300px;
+    max-width: 400px;
+
+    .logo {
+      height: 100px;
+    }
+
+    p {
+      margin-top: 20px;
+      line-height: 1.6;
+      color: $third;
+      font-style: italic;
+    }
+  }
+
+  .footer-column {
+    flex: 1 1 180px;
+    min-width: 160px;
+
+    h3 {
+      margin-bottom: 30px;
+      font-size: 20px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        margin-bottom: 20px;
+      }
+
+      a {
+        text-decoration: none;
+        color: $third;
+        transition: 0.3s;
+        display: inline-block;
+
+        &:hover {
+          color: $primary;
+          transform: translateX(4px);
+        }
+      }
+    }
+  }
+
+  .footer-bottom {
+    margin-top: 50px;
+    border-top: 1px solid #222;
+    padding-top: 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+    p {
+      color: $third;
+      font-size: 14px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 20px;
+
+      svg {
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+          color: $primary;
+        }
+      }
+    }
+  }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .footer {
+    padding: 50px 30px;
+
+    .footer-container {
+      gap: 30px;
+    }
+  .footer-left {
+    flex: 1 1 180px;
+
+
+  }
+  }
+}
+
+@media (max-width: 600px) {
+  .footer {
+    padding: 40px 20px;
+
+    .footer-container {
+      flex-direction: column; // stack
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  }
+}

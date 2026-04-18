@@ -1,0 +1,252 @@
+@use "./mixin.scss" as *;
+@use "./variable.scss" as *;
+
+.sign-in-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sign-in {
+  background: $background;
+}
+
+.sign-in-container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* LEFT SIDE */
+.sign-in-left {
+  padding: 60px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  //   background: #faecdf;
+  width: 55%;
+  border-radius: 20px;
+  // color: #333;
+
+  h1 {
+    font-size: 65px;
+    font-weight: 800;
+    color: $primary;
+    margin-bottom: 18px;
+  }
+
+  h2 {
+    font-size: 45px;
+    font-weight: 500;
+    color: $secondary;
+    // color: white;
+    margin-bottom: 18px;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 1.4;
+    color: $third;
+    margin-bottom: 20px;
+    max-width: 500px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      font-size: 14px;
+      color: $list;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      background:$btn;
+      padding: 8px 12px;
+      border-radius: 8px;
+      width: fit-content;
+    }
+  }
+}
+
+/* RIGHT SIDE */
+.sign-in-form {
+  flex: 1;
+  padding: 50px 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .sign-in-inner-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+
+      label {
+        font-size: 14px;
+        margin-bottom: 15px;
+        margin-left: 5px;
+        color: $third;
+        // color: white;
+      }
+
+      input {
+        height: 45px;
+        padding: 0 12px;
+        margin-bottom: 5px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        background: $background;
+        transition: all 0.25s ease;
+
+        &:focus {
+          //   border-color: #ff6f00;
+          background: #fff;
+          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+          outline: none;
+        }
+      }
+
+      button {
+        position: absolute;
+        right: 10px;
+        top: 60%;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #777;
+      }
+    }
+
+    a {
+      font-size: 13px;
+      color: $primary;
+      text-align: right;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .sign-in-btn,
+    .google-auth-btn {
+      height: 45px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+
+      .button-innner {
+        align-items: center;
+        height: 30px;
+        display: flex;
+        gap: 5px;
+        // word-spacing: 10px;
+        letter-spacing: 1px;
+      }
+    }
+
+    .sign-in-btn {
+      border: none;
+      color: #fff;
+      background:$btn;
+      &:hover{
+             background: $btn-hover;
+      }
+      &:focus{
+        border: none
+      }
+    }
+
+    .loader {
+      @include flex-center;
+      border: 1px solid $primary;
+      background: #f5f7fa;
+
+    }
+
+    .google-auth-btn {
+      border: 1px solid #ddd;
+      background: $background;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: 0.25s;
+
+      &:hover {
+        background: #f7f7f7;
+      }
+    }
+
+    h3 {
+      text-align: center;
+      font-size: 14px;
+      color: $third;
+      // color: white;
+
+      span {
+        color: $primary;
+        cursor: pointer;
+        font-weight: 600;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+/* RESPONSIVE */
+
+/* <= 900px */
+
+@media (max-width: 900px) {
+  .sign-in-left {
+    display: none;
+  }
+
+  .sign-in-container {
+    flex: 1;
+    height: auto;
+  }
+
+  .sign-in-form {
+    width: 100%;
+    padding: 40px 25px;
+  }
+
+  .ForgotPassword {
+    margin: 0;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .sign-in-wrapper {
+    padding: 20px;
+  }
+
+  .sign-in-form {
+    padding: 25px 15px;
+  }
+
+  .sign-in-btn,
+  .google-auth-btn {
+    height: 40px;
+    font-size: 14px;
+  }
+  .ForgotPassword {
+    margin: 0;
+  }
+}

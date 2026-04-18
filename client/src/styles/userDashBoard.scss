@@ -1,0 +1,11 @@
+@use "./variable.scss" as *;
+@use "./Header.scss";
+@use "Card.scss";
+@use "Cart.scss";
+@use "./CheckOut.scss";
+@use "./orderPlace.scss";
+@use "./mixin.scss" as *;
+.user-dashBoard-inner {
+  margin: 60px 0;
+  padding: 10px;
+}

@@ -1,0 +1,181 @@
+@use "./variable.scss" as *;
+.forgot {
+  background: $background;
+}
+.forgot-container {
+  width: 100%;
+  max-width: 1380px;
+  margin: 0 auto;
+}
+.forgot-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  gap: 30px;
+}
+
+// LEFT SECTION
+.sign-up-left {
+  padding: 60px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 60%;
+  border-radius: 20px;
+  color: #333;
+
+  h1 {
+    font-size: 65px;
+    font-weight: 800;
+    color: $primary;
+    margin-bottom: 18px;
+  }
+
+  h2 {
+    font-size: 45px;
+    font-weight: 500;
+    color: $secondary;
+    margin-bottom: 18px;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: $third;
+    margin-bottom: 20px;
+    max-width: 500px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      font-size: 14px;
+      color: $list;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: $btn;
+      padding: 8px 12px;
+      border-radius: 8px;
+      width: fit-content;
+      font-weight: 500;
+    }
+  }
+}
+
+// RIGHT FORM SECTION
+.forgot-right-form {
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 40%;
+  .form-top-section {
+    text-align: center;
+    margin-bottom: 25px;
+
+    h2 {
+      font-size: 40px;
+      font-weight: 700;
+      color: $secondary;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .loader {
+      margin: 0 auto;
+    }
+  }
+
+  .forgot-inner-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    .input-wrapper {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+
+      label {
+        font-size: 16px;
+        margin-left: 5px;
+        color: $secondary;
+        font-weight: 500;
+      }
+
+      input {
+        padding: 12px 40px 12px 12px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        outline: none;
+        font-size: 14px;
+        margin: 15px 0;
+       
+      }
+
+      button {
+        position: absolute;
+        right: 10px;
+        top: 45px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #777;
+        font-size: 16px;
+      }
+    }
+
+    .forgot-btn {
+      height: 45px;
+      border: none;
+      border-radius: 8px;
+      background: $btn;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+
+      &:hover {
+        opacity: 0.9;
+      }
+
+      &.loader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+// RESPONSIVE
+@media (max-width: 900px) {
+  .forgot-wrapper {
+    flex-direction: column;
+      .form-top-section {
+    h2{
+        font-size: 32px;
+    }}
+  }
+
+  .sign-up-left {
+   display: none;
+  }
+
+  .forgot-right-form {
+    width: 100%;
+  }
+}

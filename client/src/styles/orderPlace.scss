@@ -1,0 +1,47 @@
+@use './mixin.scss' as *;
+@use './variable.scss' as *;
+
+
+.place-container {
+  @include flex-center;
+  min-height: 100vh;
+  position: relative;
+
+  .back-link {
+    font-size: 23px;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    color: $primary;
+  }
+
+  .text-section {
+    width: 400px;
+    text-align: center;
+
+    svg {
+      fill: rgb(0, 229, 0);
+      font-size: 50px;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 600;
+      margin: 10px 0;
+    }
+
+    p {
+      opacity: 0.6;
+      margin: 10px 0;
+      font-size: 15px;
+      line-height: 20px;
+    }
+    button{
+      width: 250px;
+      height: 40px;
+      border-radius: 5px;
+      background-color: $primary;
+      color: white;
+    }
+  }
+}

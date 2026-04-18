@@ -1,0 +1,137 @@
+@use "./mixin.scss" as *;
+@media (max-width:1024px) {
+  .menu {
+    display: none;
+    height: 100vh;
+
+    .header-user-inner-list {
+      flex-direction: column;
+      background-color: #fff;
+      gap: 0;
+
+      li {
+        width: 100%;
+        padding: 20px;
+
+        a {
+          @include flex-center;
+          gap: 10px;
+          justify-content: left;
+
+          .icon {
+            display: block !important;
+          }
+
+          span {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  .menu-icon {
+    display: block !important;
+  }
+
+  .header-inner {
+    .owner-list li {
+      p {
+        display: none !important;
+      }
+    }
+  }
+
+  .form-container {
+    .form-outer {
+      height: 100vh;
+    }
+  }
+
+  .shop {
+    .shop-info-wrapper {
+      width: 100% !important;
+    }
+  }
+
+  .shop {
+    h2 {
+      font-size: 16px !important;
+      font-weight: 500 !important;
+    }
+  }
+
+  .swiggy-card {
+    width: 100% !important;
+
+    .content {
+      p {
+        width: 150px;
+        text-align: left;
+      }
+    }
+  }
+
+  .cart-item-wrapper {
+    .left-section {
+      width: 100% !important;
+    }
+  }
+
+  .cart-item-wrapper {
+    .cart {
+      .quantity-section {
+        width: 100%;
+        justify-content: right !important;
+      }
+    }
+  }
+
+  .inner-wrapper {
+    min-width: 100% !important;
+  }
+
+  .checkout-wrapper {
+    padding: 0 !important;
+
+    .inner-wrapper {
+      .heading {
+        margin-left: 25px;
+      }
+
+      .payment-section {
+        .payment-mode {
+          flex-wrap: wrap;
+
+          .mode {
+            width: 100% !important;
+          }
+        }
+      }
+    }
+  }
+
+  .item-card {
+    gap: 0 !important;
+  }
+
+  .my-orders {
+    .inner-container {
+      min-width: 100% !important;
+    }
+  }
+
+  .shops {
+    .wrapper {
+      width: 100% !important;
+
+      .image-wrapper {
+        width: 100% !important;
+
+        img {
+          height: 200px !important;
+        }
+      }
+    }
+  }
+}

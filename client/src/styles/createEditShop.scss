@@ -1,0 +1,170 @@
+@use './variable.scss' as *;
+@use "sass:color";
+
+.addFood {
+  background: #f8fafc;
+
+  .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100dvh;
+    padding: 20px;
+    position: relative;
+
+    .back-link {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: $primary;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.2s;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+
+    .form-outer {
+      width: 100%;
+      max-width: 420px;
+      background: #fff;
+      padding: 30px 25px;
+      border-radius: 14px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+
+      .top {
+        text-align: center;
+
+        .image-section {
+          width: 80px;
+          height: 80px;
+          margin: 0 auto;
+          border-radius: 50%;
+          background: rgba(255, 119, 0, 0.1);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          svg {
+            width: 40px;
+            height: 40px;
+            color: $primary;
+          }
+        }
+
+        .heading {
+          margin-top: 15px;
+          font-size: 22px;
+          font-weight: 600;
+          color: #111827;
+        }
+      }
+
+      form {
+        margin-top: 25px;
+
+        .input-wrapper {
+          margin-bottom: 18px;
+          position: relative;
+
+          label {
+            font-size: 13px;
+            font-weight: 500;
+            color: #374151;
+          }
+
+          input,
+          select {
+            width: 100%;
+            height: 44px;
+            margin-top: 6px;
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+            padding: 0 12px;
+            font-size: 14px;
+            background: #fff;
+            transition: all 0.2s ease;
+
+            &:focus {
+              border-color: $primary;
+              box-shadow: 0 0 0 3px rgba(255, 119, 0, 0.15);
+              outline: none;
+            }
+          }
+
+          input[type="file"] {
+            padding: 8px;
+            cursor: pointer;
+          }
+
+          .image {
+            margin-top: 10px;
+            width: 100%;
+            height: 140px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px dashed #d1d5db;
+
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+
+          p {
+            font-size: 11px;
+            color: #dc2626;
+            margin-top: 4px;
+          }
+        }
+
+        .input-field {
+          display: flex;
+          gap: 15px;
+
+          @media (max-width: 500px) {
+            flex-direction: column;
+          }
+        }
+
+        button {
+          width: 100%;
+          height: 46px;
+          border-radius: 10px;
+          border: none;
+          background: $primary;
+          color: #fff;
+          font-size: 15px;
+          font-weight: 500;
+          cursor: pointer;
+          transition: 0.25s;
+
+          &:hover {
+            background: color.adjust($primary, $lightness: -5%);
+            transform: translateY(-1px);
+            box-shadow: 0 10px 20px rgba(255, 119, 0, 0.2);
+          }
+
+          &:active {
+            transform: scale(0.98);
+          }
+        }
+
+        .btn {
+          margin-top: 10px;
+          background: transparent;
+          border: 1px solid #d1d5db;
+          color: #374151;
+
+          &:hover {
+            background: #f3f4f6;
+          }
+        }
+      }
+    }
+  }
+}

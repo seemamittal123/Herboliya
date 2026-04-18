@@ -1,0 +1,174 @@
+@use "./mixin.scss" as *;
+@use "./variable.scss" as *;
+
+.sign-up-container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.sign-up {
+  height: 100vh;
+  background: $background !important;
+  @include flex-center;
+  align-items: center;
+  min-height: 100vh;
+
+  .sign-up-wrapper {
+    @include flex-center;
+    justify-content: space-between;
+
+    .sign-up-form {
+      width: 500px;
+      border-radius: 20px;
+      // padding: 60px 30px 0;
+
+      .form-top-section {
+        text-align: center;
+        margin-bottom: 25px;
+
+        h2 {
+          font-size: 28px;
+          font-weight: 700;
+          color: $primary;
+        }
+      }
+
+      .sign-up-inner-form {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+
+        .input-wrapper {
+          display: flex;
+          flex-direction: column;
+          position: relative;
+
+          label {
+            font-size: 14px;
+            margin-bottom: 10px;
+            margin-left: 5px;
+            color: $secondary;
+            font-weight: 500;
+          }
+
+          input {
+            padding: 12px 40px 12px 12px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            outline: none;
+            font-size: 16px;
+            margin-bottom: 15px;
+          }
+
+          button {
+            position: absolute;
+            right: 10px;
+            top: 36px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #777;
+            font-size: 16px;
+          }
+
+          p {
+            position: absolute;
+            bottom: -5px;
+            left: 5px;
+            font-size: 14px;
+            color: red;
+            margin-top: 4px;
+          }
+        }
+
+        .sign-up-btn {
+          border: none;
+          border-radius: 8px;
+          background: $btn;
+          color: #fff;
+          font-size: 15px;
+          font-weight: 600;
+          height: 45px;
+          cursor: pointer;
+          &:hover{
+            background: $btn-hover;
+          }
+        }
+
+        .loader {
+          @include flex-center;
+          border: 1px solid $primary;
+          background: #f5f7fa;
+
+          &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+          }
+        }
+
+        .google-auth-btn {
+          padding: 12px;
+          border-radius: 8px;
+          border: 1px solid #ddd;
+          background: #f9f9f9 ;
+          cursor: pointer;
+          font-size: 14px;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          div {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+          }
+
+          &:hover {
+            background:    #fff;
+          }
+
+          &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+          }
+        }
+
+        h3 {
+          font-size: 14px;
+          text-align: center;
+          color: $secondary;
+
+          span {
+            color: $primary;
+            cursor: pointer;
+            font-weight: 600;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// RESPONSIVE
+@media (max-width: 768px) {
+  .sign-up {
+    padding: 0 10px;
+    background: #f5f7fa !important;
+  }
+
+  .sign-up-form {
+    padding: 30px 20px;
+  }
+
+  .sign-up-container {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+}
