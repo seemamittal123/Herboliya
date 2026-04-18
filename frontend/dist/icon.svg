@@ -1,0 +1,19 @@
+<svg 
+  xmlns="http://www.w3.org/2000/svg" 
+  width="80" 
+  height="80" 
+  viewBox="0 0 100 100"
+>
+  <!-- Circle -->
+  <circle cx="50" cy="50" r="48" fill="#ff7700"/>
+
+  <!-- Clean geometric V -->
+  <path 
+    d="M28 30 L50 75 L72 30"
+    stroke="white"
+    stroke-width="12"
+    fill="none"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>
