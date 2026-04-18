@@ -5,7 +5,7 @@ import useGetItems from "./hooks/useGetItems";
 import useGetMyOrder from "./hooks/useGetMyOrder";
 import useGetLike from "./hooks/useGetLike";
 
-export const serverUrl = "http://localhost:5000";
+export const serverUrl = "https://herboliya-1.onrender.com";
 
 const App = () => {
   useCurrentUser();
