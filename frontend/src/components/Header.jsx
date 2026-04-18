@@ -141,8 +141,10 @@ const Header = () => {
               )}
 
               <li onClick={handleLogOut}>
-                <MdLogout size={20} />
-                <p className="icon">Log out</p>
+                <Link>
+                  <MdLogout size={20} />
+                  <p className="icon">Log out</p>
+                </Link>
               </li>
             </ul>
           </div>
