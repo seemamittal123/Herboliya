@@ -4,17 +4,17 @@ import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIRE_APIKEY,
-  authDomain: "vingo-65b91.firebaseapp.com",
-  projectId: "vingo-65b91",
-  storageBucket: "vingo-65b91.firebasestorage.app",
-  messagingSenderId: "147663770055",
-  appId: "1:147663770055:web:244e292034d269b68ec9e2",
-  measurementId: "G-HPC5B1N36B",
+  authDomain: import.meta.env.VITE_FIRE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIRE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIRE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIRE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIRE_APP_ID,
+  measurementId: import.meta.env.VITE_FIRE_MEASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);
 
-const auth = getAuth(app);         
+const auth = getAuth(app);
 const analytics = getAnalytics(app);
 
 export { app, auth, analytics };

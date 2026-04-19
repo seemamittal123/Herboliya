@@ -68,7 +68,7 @@ export const signIn = async (req, res) => {
     }
     const token = await getToken(user._id);
     res.cookie("token", token, {
-      secure: true,
+      secure: process.env.NODE_ENV === "production",
       sameSite: "none",
       maxAge: 31 * 24 * 60 * 60 * 1000,
       httpOnly: true,
@@ -95,7 +95,7 @@ export const sendOtp = async (req, res) => {
     const user = await userModel.findOne({ email });
     if (!user) {
       return res.status(400).json({ message: "User does not exist " });
-    }    
+    }
     const otp = Math.floor(1000 + Math.random() * 9000).toString();
     user.resetOtp = otp;
     user.otpExpires = Date.now() + 5 * 60 * 1000;
@@ -206,7 +206,7 @@ export const googleAuth = async (req, res) => {
     }
     const token = await getToken(user._id);
     res.cookie("token", token, {
-      secure: true,
+      secure: process.env.NODE_ENV === "production",
       sameSite: "none",
       maxAge: 31 * 24 * 60 * 60 * 1000,
       httpOnly: true,

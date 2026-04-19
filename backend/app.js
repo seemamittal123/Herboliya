@@ -15,7 +15,10 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://herboliya.vercel.app",
+    origin:
+      process.env.NODE_ENV === "production"
+        ? "https://herboliya.vercel.app"
+        : ["http://localhost:5173", "http://localhost:5174"],
     credentials: true,
   }),
 );
