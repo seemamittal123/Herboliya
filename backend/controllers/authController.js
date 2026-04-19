@@ -82,7 +82,11 @@ export const signIn = async (req, res) => {
 
 export const logOut = async (req, res) => {
   try {
-    res.clearCookie("token");
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "none",
+    });
     return res.status(200).json({ message: "Log out successfully" });
   } catch (error) {
     return res.status(400).json({ message: `Log out error` });
@@ -181,7 +185,7 @@ export const VerifySignUpOtp = async (req, res) => {
     user.otpExpires = undefined;
     const token = await getToken(user._id);
     res.cookie("token", token, {
-      secure: true,
+      secure: process.env.NODE_ENV === "production",
       sameSite: "none",
       maxAge: 31 * 24 * 60 * 60 * 1000,
       httpOnly: true,
