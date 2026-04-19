@@ -20,13 +20,15 @@ import { IoIosCall } from "react-icons/io";
 import { serverUrl } from "../App";
 import useCurrentUser from "../hooks/useCurrentUser";
 import { clearUser } from "../redux/userSlice";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
 
 const Header = () => {
   const { cartItem } = useSelector((state) => state.user);
   const [toggle, setToggle] = useState(false);
   const { userData } = useSelector((state) => state.user);
   const navigater = useNavigate();
-  const dispatch=useDispatch()
+  const dispatch = useDispatch()
   const handleLogOut = async () => {
     try {
       let { data } = await axios.get(`${serverUrl}/api/auth/log-out`, {
@@ -35,6 +37,7 @@ const Header = () => {
       toast.success(data.message);
       navigater("/");
       dispatch(clearUser());
+      await signOut(auth); // Sign out from Firebase
     } catch (error) {
       console.log(error);
       toast.error("Logout Failed");
