@@ -12,7 +12,7 @@ const Items = () => {
             {
               loading ?
                 <div className="spinner">
-                  <HashLoader color="#ff7700" />
+                  <HashLoader color="#7cc242"  />
                 </div>
                 :
 
