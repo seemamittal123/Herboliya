@@ -13,7 +13,8 @@
         width: 100%;
         padding: 20px;
 
-        a {
+        a,
+        button {
           @include flex-center;
           gap: 10px;
           justify-content: left;

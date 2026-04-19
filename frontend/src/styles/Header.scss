@@ -1,8 +1,10 @@
 @use "./mixin.scss" as *;
 @use "./variable.scss" as *;
+
 .logoimg {
   height: 50px;
 }
+
 .userheader {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   background: #ffffff;
@@ -12,12 +14,14 @@
   left: 0;
   z-index: 9999;
 }
+
 .header-user-containre {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 20px;
 }
+
 .header-user-inner {
   height: 80px;
   display: flex;
@@ -26,38 +30,49 @@
   padding: 0 10px;
   border-radius: 10px;
 }
+
 .menu {
   @include flex-center;
   justify-content: space-between;
   width: 75%;
+
   .header-user-inner-list {
     @include flex-center;
     list-style: none;
     gap: 40px;
+
     li {
       padding: 10px;
       margin: 0 10px;
       color: #333;
-      a {
+
+      a,
+      button {
         text-decoration: none;
         @include flex-center;
         gap: 5px;
         position: relative;
+
         svg {
           font-size: 20px;
         }
+
         p {
           margin: 0;
           font-size: 17px;
           font-weight: 500;
           transition: 0.2s;
         }
-          &:hover {
-            color: $primary;
-          }&:active{
-            color: $primary;
-          
+
+        &:hover {
+          color: $primary;
         }
+
+        &:active {
+          color: $primary;
+
+        }
+
         span {
           position: absolute;
           top: -10px;
@@ -73,7 +88,8 @@
       }
     }
   }
-  .signin-btn{
+
+  .signin-btn {
     padding: 10px 20px;
     background-color: $primary;
     color: white;
@@ -82,20 +98,25 @@
     font-size: 17px;
     font-weight: 500;
     transition: 0.2s;
+
     &:hover {
       background-color: darken($primary, 10%);
     }
   }
+
   .list {
     gap: 10px;
+
     li {
       margin: 0;
     }
   }
+
   .icon {
     display: none;
   }
 }
+
 .open {
   display: block !important;
   position: absolute;
@@ -103,6 +124,7 @@
   right: 0;
   z-index: 99;
 }
+
 .menu-icon {
   display: none;
 }
