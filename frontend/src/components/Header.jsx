@@ -34,10 +34,12 @@ const Header = () => {
       let { data } = await axios.get(`${serverUrl}/api/auth/log-out`, {
         withCredentials: true,
       });
-      toast.success(data.message);
-      navigater("/");
+      // Clear Redux state FIRST
       dispatch(clearUser());
       await signOut(auth); // Sign out from Firebase
+      toast.success(data.message);
+      // Navigate after clearing state
+      navigater("/");
     } catch (error) {
       console.log(error);
       toast.error("Logout Failed");

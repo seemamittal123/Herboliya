@@ -20,6 +20,10 @@ const userSlice = createSlice({
     clearUser: (state) => {
       state.userData = null;
       state.loading = false;
+      state.cartItem = [];
+      state.totalAmount = 0;
+      state.likedItems = [];
+      state.myOrder = [];
     },
     startAuthCheck: (state) => {
       state.loading = true;

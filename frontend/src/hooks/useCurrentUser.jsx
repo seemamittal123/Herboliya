@@ -13,9 +13,13 @@ const useCurrentUser = () => {
         const res = await axios.get(`${serverUrl}/api/user/current`, {
           withCredentials: true,
         });
-        dispatch(setUser(res.data));
-
+        if (res.status === 200 && res.data) {
+          dispatch(setUser(res.data));
+        } else {
+          dispatch(clearUser());
+        }
       } catch (err) {
+        // On any error, clear user state
         dispatch(clearUser());
       }
     };
