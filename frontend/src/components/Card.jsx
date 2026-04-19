@@ -8,19 +8,32 @@ import axios from "axios";
 import { serverUrl } from "../App";
 
 const Card = ({ item }) => {
-  const { cartItem, likedItems } = useSelector((state) => state.user);
+  const { cartItem, likedItems, userData } = useSelector((state) => state.user);
   const [toggle, setToggle] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleDecreaseQuantity = () => {
+    if (userData == null) {
+      navigate('/sign-in');
+      return;
+    }
     if (quantity > 0) setQuantity(quantity - 1);
   };
   const handleIncreaseQuantity = () => {
+    if (userData == null) {
+      navigate('/sign-in');
+      return;
+    }
     setQuantity(quantity + 1);
   };
 
   const handleCart = () => {
+    if (userData == null) {
+      navigate('/sign-in');
+      return;
+    }
     if (quantity > 0) {
       dispatch(
         addToCart({
@@ -35,6 +48,10 @@ const Card = ({ item }) => {
   };
 
   const handleLike = async (id) => {
+    if (userData == null) {
+      navigate('/sign-in');
+      return;
+    }
     setToggle(!toggle);
     try {
       let { data } = await axios.post(
@@ -111,10 +128,10 @@ const Card = ({ item }) => {
             style={
               cartItem.some((i) => i._id == item._id)
                 ? {
-                    backgroundColor: "transparent",
-                    color: "#fcfcfc",
-                    border: "1px solid #111184",
-                  }
+                  backgroundColor: "transparent",
+                  color: "#fcfcfc",
+                  border: "1px solid #111184",
+                }
                 : {}
             }
           >

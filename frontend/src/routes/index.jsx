@@ -34,32 +34,32 @@ export const router = createHashRouter([
         path: "forgot-password",
         element: <ForgotPassword />,
       },
-
+      {
+        path: "",
+        element: <UserDashboard />,
+        children: [
+          {
+            index: true,
+            element: <Home />
+          },
+          {
+            path: "contact",
+            element: <Contact />,
+          },
+          {
+            path: "items",
+            element: <Items />,
+          },
+          {
+            path: "about",
+            element: <About />,
+          },
+        ]
+      },
       {
         element: <ProtectedRoutes />,
         children: [
-          {
-            path: "",
-            element: <UserDashboard />,
-            children: [
-              {
-                index: true,
-                element: <Home />
-              },
-              {
-                path: "contact",
-                element: <Contact />,
-              },
-              {
-                path: "items",
-                element: <Items />,
-              },
-              {
-                path: "about",
-                element: <About />,
-              },
-            ]
-          },
+
           {
             path: "admin-dashboard",
             element: <OwnerDashboard />,

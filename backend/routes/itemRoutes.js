@@ -13,7 +13,7 @@ import {
 const itemRoutes = express.Router();
 
 itemRoutes.post("/add-item", isAuth, upload.single("image"), addItem);
-itemRoutes.get("/get-items", isAuth, getFoodItem);
+itemRoutes.get("/get-items",  getFoodItem);
 itemRoutes.get("/find-item/:id", findItem);
 itemRoutes.post("/edit-item/:id", isAuth, upload.single("image"), editItem);
 itemRoutes.delete("/delete-item/:id", isAuth, deleteItem);

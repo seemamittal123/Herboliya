@@ -10,7 +10,7 @@ import {
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { MdDashboard, MdLogout } from "react-icons/md";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ImCross } from "react-icons/im";
 import { FaClipboardList } from "react-icons/fa";
 import logo from "../assets/logo.png";
@@ -18,24 +18,25 @@ import { IoAppsOutline } from "react-icons/io5";
 import { useState } from "react";
 import { IoIosCall } from "react-icons/io";
 import { serverUrl } from "../App";
+import useCurrentUser from "../hooks/useCurrentUser";
+import { clearUser } from "../redux/userSlice";
 
 const Header = () => {
   const { cartItem } = useSelector((state) => state.user);
   const [toggle, setToggle] = useState(false);
   const { userData } = useSelector((state) => state.user);
   const navigater = useNavigate();
-
+  const dispatch=useDispatch()
   const handleLogOut = async () => {
     try {
       let { data } = await axios.get(`${serverUrl}/api/auth/log-out`, {
         withCredentials: true,
       });
       toast.success(data.message);
-      setToggle(false);
-      navigater("/sign-in");
+      navigater("/");
+      dispatch(clearUser());
     } catch (error) {
       console.log(error);
-
       toast.error("Logout Failed");
     }
   };
@@ -44,23 +45,19 @@ const Header = () => {
     setToggle(!toggle);
   };
 
-  const handleLinkClick = () => {
-    setToggle(false);
-  };
-
   return (
     <header className="userheader">
       <div className="header-user-containre">
         <div className="header-user-inner">
           <div>
-            <Link to="/" onClick={handleLinkClick}>
+            <Link to="/">
               <img src={logo} className="logoimg" />
             </Link>
           </div>
           <div className={toggle ? "menu open" : "menu"}>
             <ul className="header-user-inner-list">
               <li>
-                <Link to="/" onClick={handleLinkClick}>
+                <Link to="/">
                   <div className="icon">
                     <FaHome />
                   </div>
@@ -68,7 +65,7 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/items" onClick={handleLinkClick}>
+                <Link to="/items">
                   <div className="icon">
                     <FaDatabase />
                   </div>
@@ -76,7 +73,7 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/about" onClick={handleLinkClick}>
+                <Link to="/about">
                   <div className="icon">
                     <FaListAlt />
                   </div>
@@ -84,7 +81,7 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/contact" onClick={handleLinkClick}>
+                <Link to="/contact">
                   <div className="icon">
                     <IoIosCall />
                   </div>
@@ -93,7 +90,7 @@ const Header = () => {
               </li>
               {userData?.role == "admin" && (
                 <li>
-                  <Link to="/admin-dashboard" onClick={handleLinkClick}>
+                  <Link to="/admin-dashboard">
                     <div className="icon">
                       <MdDashboard />
                     </div>
@@ -102,51 +99,58 @@ const Header = () => {
                 </li>
               )}
             </ul>
-            <ul className="header-user-inner-list list">
-              <li>
-                <Link to="/likes" onClick={handleLinkClick}>
-                  <FaHeart size={20} />
-                  <p className="icon">Like</p>
-                </Link>
-              </li>
-              {userData?.role == "admin" && (
-                <li>
-                  <Link to="/add-item" onClick={handleLinkClick}>
-                    <FaPlus />
-                    <div className="icon">
-                      <p>Add Food Item</p>
-                    </div>
-                  </Link>
-                </li>
-              )}
+            {
+              userData ?
+                <ul className="header-user-inner-list list">
+                  <li>
+                    <Link to="/likes">
+                      <FaHeart size={20} />
+                      <p className="icon">Like</p>
+                    </Link>
+                  </li>
+                  {userData?.role == "admin" && (
+                    <li>
+                      <Link to="/add-item">
+                        <FaPlus />
+                        <div className="icon">
+                          <p>Add Food Item</p>
+                        </div>
+                      </Link>
+                    </li>
+                  )}
 
-              <li>
-                <Link to="/my-orders" onClick={handleLinkClick}>
-                  <FaClipboardList size={21} />
-                  <div className="icon">
-                    <p className="icon">My Order</p>
-                  </div>
-                </Link>
-              </li>
-              {userData?.role == "user" && (
-                <li>
-                  <Link to="/cart" onClick={handleLinkClick}>
-                    <FaCartPlus size={21} />
-                    <span>{cartItem?.length || 0}</span>
-                    <div className="icon">
-                      <p>Cart</p>
-                    </div>
-                  </Link>
-                </li>
-              )}
+                  <li>
+                    <Link to="/my-orders">
+                      <FaClipboardList size={21} />
+                      <div className="icon">
+                        <p className="icon">My Order</p>
+                      </div>
+                    </Link>
+                  </li>
+                  {userData?.role == "user" && (
+                    <li>
+                      <Link to="/cart">
+                        <FaCartPlus size={21} />
+                        <span>{cartItem?.length || 0}</span>
+                        <div className="icon">
+                          <p>Cart</p>
+                        </div>
+                      </Link>
+                    </li>
+                  )}
 
-              <li onClick={handleLogOut}>
-                <Link>
-                  <MdLogout size={20} />
-                  <p className="icon">Log out</p>
+                  <li>
+                    <button type="button" onClick={handleLogOut}>
+                      <MdLogout size={20} />
+                      <p className="icon">Log out</p>
+                    </button>
+                  </li>
+                </ul>
+                :
+                <Link to="/sign-in" className="signin-btn">
+                  Sign In
                 </Link>
-              </li>
-            </ul>
+            }
           </div>
           <div className="menu-icon" onClick={handleMenu}>
             {toggle ? <ImCross size={25} /> : <IoAppsOutline size={25} />}

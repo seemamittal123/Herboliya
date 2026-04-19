@@ -73,6 +73,19 @@
       }
     }
   }
+  .signin-btn{
+    padding: 10px 20px;
+    background-color: $primary;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 500;
+    transition: 0.2s;
+    &:hover {
+      background-color: darken($primary, 10%);
+    }
+  }
   .list {
     gap: 10px;
     li {
