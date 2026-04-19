@@ -20,26 +20,22 @@ import { IoIosCall } from "react-icons/io";
 import { serverUrl } from "../App";
 import useCurrentUser from "../hooks/useCurrentUser";
 import { clearUser } from "../redux/userSlice";
-import { signOut } from "firebase/auth";
-import { auth } from "../../firebase";
 
 const Header = () => {
   const { cartItem } = useSelector((state) => state.user);
   const [toggle, setToggle] = useState(false);
   const { userData } = useSelector((state) => state.user);
   const navigater = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
   const handleLogOut = async () => {
     try {
       let { data } = await axios.get(`${serverUrl}/api/auth/log-out`, {
         withCredentials: true,
       });
-      // Clear Redux state FIRST
-      dispatch(clearUser());
-      await signOut(auth); // Sign out from Firebase
       toast.success(data.message);
-      // Navigate after clearing state
       navigater("/");
+      dispatch(clearUser());
     } catch (error) {
       console.log(error);
       toast.error("Logout Failed");
@@ -48,6 +44,10 @@ const Header = () => {
 
   const handleMenu = () => {
     setToggle(!toggle);
+  };
+
+  const closeMenu = () => {
+    setToggle(false);
   };
 
   return (
@@ -62,7 +62,7 @@ const Header = () => {
           <div className={toggle ? "menu open" : "menu"}>
             <ul className="header-user-inner-list">
               <li>
-                <Link to="/">
+                <Link to="/" onClick={closeMenu}>
                   <div className="icon">
                     <FaHome />
                   </div>
@@ -70,7 +70,7 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/items">
+                <Link to="/items" onClick={closeMenu}>
                   <div className="icon">
                     <FaDatabase />
                   </div>
@@ -78,7 +78,7 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/about">
+                <Link to="/about" onClick={closeMenu}>
                   <div className="icon">
                     <FaListAlt />
                   </div>
@@ -86,7 +86,7 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/contact">
+                <Link to="/contact" onClick={closeMenu}>
                   <div className="icon">
                     <IoIosCall />
                   </div>
@@ -95,7 +95,7 @@ const Header = () => {
               </li>
               {userData?.role == "admin" && (
                 <li>
-                  <Link to="/admin-dashboard">
+                  <Link to="/admin-dashboard" onClick={closeMenu}>
                     <div className="icon">
                       <MdDashboard />
                     </div>
@@ -108,14 +108,14 @@ const Header = () => {
               userData ?
                 <ul className="header-user-inner-list list">
                   <li>
-                    <Link to="/likes">
+                    <Link to="/likes" onClick={closeMenu}>
                       <FaHeart size={20} />
                       <p className="icon">Like</p>
                     </Link>
                   </li>
                   {userData?.role == "admin" && (
                     <li>
-                      <Link to="/add-item">
+                      <Link to="/add-item" onClick={closeMenu}>
                         <FaPlus />
                         <div className="icon">
                           <p>Add Food Item</p>
@@ -125,7 +125,7 @@ const Header = () => {
                   )}
 
                   <li>
-                    <Link to="/my-orders">
+                    <Link to="/my-orders" onClick={closeMenu}>
                       <FaClipboardList size={21} />
                       <div className="icon">
                         <p className="icon">My Order</p>
@@ -134,7 +134,7 @@ const Header = () => {
                   </li>
                   {userData?.role == "user" && (
                     <li>
-                      <Link to="/cart">
+                      <Link to="/cart" onClick={closeMenu}>
                         <FaCartPlus size={21} />
                         <span>{cartItem?.length || 0}</span>
                         <div className="icon">
@@ -145,14 +145,14 @@ const Header = () => {
                   )}
 
                   <li>
-                    <button type="button" onClick={handleLogOut}>
+                    <button type="button" onClick={() => { handleLogOut(); closeMenu(); }}>
                       <MdLogout size={20} />
                       <p className="icon">Log out</p>
                     </button>
                   </li>
                 </ul>
                 :
-                <Link to="/sign-in" className="signin-btn">
+                <Link to="/sign-in" className="signin-btn" onClick={closeMenu}>
                   Sign In
                 </Link>
             }
