@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removeLikedItem, setLikes } from "../redux/userSlice";
+import { addToCart, removeLikedItem, addLikedItem } from "../redux/userSlice";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { serverUrl } from "../App";
@@ -59,14 +59,11 @@ const Card = ({ item }) => {
         { withCredentials: true },
       );
       setToggle(data.liked);
-      if (!data.liked) {
+      if (data.liked) {
+        dispatch(addLikedItem(item));
+      } else {
         dispatch(removeLikedItem(id));
       }
-      const { data: likesData } = await axios.get(
-        `${serverUrl}/api/item/likes`,
-        { withCredentials: true },
-      );
-      dispatch(setLikes(likesData.likedItems));
     } catch (error) {
       console.log(error);
     }
