@@ -97,9 +97,13 @@ export const toggleLike = async (req, res) => {
     if (!item) {
       return res.status(400).json({ message: "Item is not found" });
     }
-    const alreadyLikedIndex = item.likes.findIndex(
-      (like) => like.user.toString() === userId.toString(),
-    );
+    const alreadyLikedIndex = item.likes.findIndex((like) => {
+      if (typeof like === "object" && like.user) {
+        return like.user.toString() === userId.toString();
+      } else {
+        return like.toString() === userId.toString();
+      }
+    });
     if (alreadyLikedIndex !== -1) {
       item.likes.splice(alreadyLikedIndex, 1);
     } else {
@@ -117,26 +121,19 @@ export const toggleLike = async (req, res) => {
 
 export const getLikesItem = async (req, res) => {
   try {
-    const likedItems = await itemModel.aggregate([
-      { $match: { "likes.user": req.userId } },
-      {
-        $addFields: {
-          likedAt: {
-            $arrayElemAt: [
-              {
-                $filter: {
-                  input: "$likes",
-                  as: "like",
-                  cond: { $eq: ["$$like.user", req.userId] },
-                },
-              },
-              0,
-            ],
-          },
-        },
-      },
-      { $sort: { "likedAt.likedAt": -1 } },
-    ]);
+    const likedItems = await itemModel.find({
+      "likes.user": req.userId,
+    });
+    // Sort by the likedAt of the user's like, most recent first
+    likedItems.sort((a, b) => {
+      const aLike = a.likes.find(
+        (like) => like.user.toString() === req.userId.toString(),
+      );
+      const bLike = b.likes.find(
+        (like) => like.user.toString() === req.userId.toString(),
+      );
+      return new Date(bLike.likedAt) - new Date(aLike.likedAt);
+    });
     return res.status(200).json({ likedItems });
   } catch (error) {
     return res.status(500).json({
