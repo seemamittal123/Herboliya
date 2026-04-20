@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import itemModel from "../models/itemModel.js";
 import uploadOnCloudinary from "../utils/cloudinary.js";
 
@@ -98,21 +97,23 @@ export const toggleLike = async (req, res) => {
     if (!item) {
       return res.status(400).json({ message: "Item is not found" });
     }
-    const alreadyLiked = item.likes.find(
-      (like) => like.user.toString() === userId.toString(),
+    const alreadyLikedIndex = item.likes.findIndex(
+      (like) => {
+        if (typeof like === 'object' && like.user) {
+          return like.user.toString() === userId.toString();
+        } else {
+          return like.toString() === userId.toString();
+        }
+      }
     );
-
-    if (alreadyLiked) {
-      item.likes = item.likes.filter(
-        (like) => like.user.toString() !== userId.toString(),
-      );
+    if (alreadyLikedIndex !== -1) {
+      item.likes.splice(alreadyLikedIndex, 1);
     } else {
-      item.likes.push({ user: userId });
+      item.likes.push({ user: userId, likedAt: new Date() });
     }
-
     await item.save();
     res.json({
-      liked: !alreadyLiked,
+      liked: alreadyLikedIndex === -1,
       totalLikes: item.likes.length,
     });
   } catch (error) {

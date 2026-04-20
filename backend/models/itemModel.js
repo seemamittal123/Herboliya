@@ -21,14 +21,8 @@ const itemSchema = mongoose.Schema(
     },
     likes: [
       {
-        user: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
-        },
-        likedAt: {
-          type: Date,
-          default: Date.now,
-        },
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
       },
     ],
   },
