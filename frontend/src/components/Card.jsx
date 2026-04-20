@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removeLikedItem } from "../redux/userSlice";
+import { addToCart, removeLikedItem, setLikes } from "../redux/userSlice";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { serverUrl } from "../App";
@@ -52,9 +52,8 @@ const Card = ({ item }) => {
       navigate('/sign-in');
       return;
     }
-    setToggle(!toggle);
     try {
-      let { data } = await axios.post(
+      const { data } = await axios.post(
         `${serverUrl}/api/item/like/${id}`,
         {},
         { withCredentials: true },
@@ -63,6 +62,11 @@ const Card = ({ item }) => {
       if (!data.liked) {
         dispatch(removeLikedItem(id));
       }
+      const { data: likesData } = await axios.get(
+        `${serverUrl}/api/item/likes`,
+        { withCredentials: true },
+      );
+      dispatch(setLikes(likesData.likedItems));
     } catch (error) {
       console.log(error);
     }
@@ -71,7 +75,7 @@ const Card = ({ item }) => {
   useEffect(() => {
     const isLiked = likedItems.some((i) => i._id == item._id);
     setToggle(isLiked);
-  }, []);
+  }, [likedItems, item._id]);
 
   return (
     <div className="spice-card">

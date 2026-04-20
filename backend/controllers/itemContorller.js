@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import itemModel from "../models/itemModel.js";
 import uploadOnCloudinary from "../utils/cloudinary.js";
 
@@ -97,17 +98,23 @@ export const toggleLike = async (req, res) => {
     if (!item) {
       return res.status(400).json({ message: "Item is not found" });
     }
-    const alreadyLiked = item.likes.includes(userId);
-    if (alreadyLiked) {
-      item.likes = item.likes.filter(
-        (id) => id.toString() !== userId.toString(),
-      );
+
+    const alreadyLikedIndex = item.likes.findIndex((like) => {
+      if (like && like.user) {
+        return like.user.toString() === userId.toString();
+      }
+      return like.toString() === userId.toString();
+    });
+
+    if (alreadyLikedIndex !== -1) {
+      item.likes.splice(alreadyLikedIndex, 1);
     } else {
-      item.likes.push(userId);
+      item.likes.push({ user: userId, likedAt: new Date() });
     }
+
     await item.save();
     res.json({
-      liked: !alreadyLiked,
+      liked: alreadyLikedIndex === -1,
       totalLikes: item.likes.length,
     });
   } catch (error) {
@@ -117,9 +124,46 @@ export const toggleLike = async (req, res) => {
 
 export const getLikesItem = async (req, res) => {
   try {
-    const likedItems = await itemModel.find({
-      likes: req.userId,
-    });
+    const likedItems = await itemModel.aggregate([
+      {
+        $match: {
+          $or: [
+            { "likes.user": new mongoose.Types.ObjectId(req.userId) },
+            { likes: new mongoose.Types.ObjectId(req.userId) },
+          ],
+        },
+      },
+      {
+        $addFields: {
+          myLike: {
+            $filter: {
+              input: "$likes",
+              as: "like",
+              cond: {
+                $eq: ["$$like.user", new mongoose.Types.ObjectId(req.userId)],
+              },
+            },
+          },
+        },
+      },
+      {
+        $addFields: {
+          likedAt: { $arrayElemAt: ["$myLike.likedAt", 0] },
+        },
+      },
+      {
+        $sort: {
+          likedAt: -1,
+          createdAt: -1,
+        },
+      },
+      {
+        $project: {
+          myLike: 0,
+          likedAt: 0,
+        },
+      },
+    ]);
     return res.status(200).json({ likedItems });
   } catch (error) {
     return res.status(500).json({

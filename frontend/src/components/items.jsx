@@ -8,6 +8,7 @@ const Items = () => {
   const { items, loading } = useSelector((state) => state.shop);
   useGetLike();
   useGetItems();
+  
   return (
     <>
       <div className="items">

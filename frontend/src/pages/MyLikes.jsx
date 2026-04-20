@@ -12,6 +12,7 @@ const MyLikes = () => {
   useEffect(() => {
     setLikes(likedItems);
   }, [likedItems]);
+  
   return (
     <div className="likes-container">
       <div className="inner-container">
