@@ -52,20 +52,38 @@ const Card = ({ item }) => {
       navigate('/sign-in');
       return;
     }
+
+    const nextLiked = !toggle;
+    setToggle(nextLiked);
+    if (nextLiked) {
+      dispatch(addLikedItem(item));
+    } else {
+      dispatch(removeLikedItem(id));
+    }
+
     try {
       const { data } = await axios.post(
         `${serverUrl}/api/item/like/${id}`,
         {},
         { withCredentials: true },
       );
-      setToggle(data.liked);
-      if (data.liked) {
-        dispatch(addLikedItem(item));
-      } else {
-        dispatch(removeLikedItem(id));
+
+      if (data.liked !== nextLiked) {
+        setToggle(data.liked);
+        if (data.liked) {
+          dispatch(addLikedItem(item));
+        } else {
+          dispatch(removeLikedItem(id));
+        }
       }
     } catch (error) {
       console.log(error);
+      setToggle(!nextLiked);
+      if (nextLiked) {
+        dispatch(removeLikedItem(id));
+      } else {
+        dispatch(addLikedItem(item));
+      }
     }
   };
 
