@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removeLikedItem } from "../redux/userSlice";
+import { addToCart, removeLikedItem, setLikes } from "../redux/userSlice";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { serverUrl } from "../App";
+import { fetchLikes } from "../utils/fetchLikes";
 
 const Card = ({ item }) => {
   const { cartItem, likedItems, userData } = useSelector((state) => state.user);
@@ -52,7 +53,6 @@ const Card = ({ item }) => {
       navigate('/sign-in');
       return;
     }
-    setToggle(!toggle);
     try {
       let { data } = await axios.post(
         `${serverUrl}/api/item/like/${id}`,
@@ -63,6 +63,8 @@ const Card = ({ item }) => {
       if (!data.liked) {
         dispatch(removeLikedItem(id));
       }
+      // Refetch likes to update the sorted list
+      fetchLikes(dispatch, setLikes);
     } catch (error) {
       console.log(error);
     }

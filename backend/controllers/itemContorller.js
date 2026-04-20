@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import itemModel from "../models/itemModel.js";
 import uploadOnCloudinary from "../utils/cloudinary.js";
 
@@ -97,14 +98,18 @@ export const toggleLike = async (req, res) => {
     if (!item) {
       return res.status(400).json({ message: "Item is not found" });
     }
-    const alreadyLiked = item.likes.includes(userId);
+    const alreadyLiked = item.likes.find(
+      (like) => like.user.toString() === userId.toString(),
+    );
+
     if (alreadyLiked) {
       item.likes = item.likes.filter(
-        (id) => id.toString() !== userId.toString(),
+        (like) => like.user.toString() !== userId.toString(),
       );
     } else {
-      item.likes.push(userId);
+      item.likes.push({ user: userId });
     }
+
     await item.save();
     res.json({
       liked: !alreadyLiked,
@@ -118,7 +123,33 @@ export const toggleLike = async (req, res) => {
 export const getLikesItem = async (req, res) => {
   try {
     const likedItems = await itemModel.find({
-      likes: req.userId,
+      $or: [{ "likes.user": req.userId }, { likes: req.userId }],
+    });
+    // Sort by likedAt, for new likes use likedAt, for old use createdAt
+    likedItems.sort((a, b) => {
+      const aLike = a.likes.find((like) => {
+        if (typeof like === "object" && like.user) {
+          return like.user.toString() === req.userId.toString();
+        } else {
+          return like.toString() === req.userId.toString();
+        }
+      });
+      const bLike = b.likes.find((like) => {
+        if (typeof like === "object" && like.user) {
+          return like.user.toString() === req.userId.toString();
+        } else {
+          return like.toString() === req.userId.toString();
+        }
+      });
+      const aTime =
+        typeof aLike === "object" && aLike.likedAt
+          ? new Date(aLike.likedAt)
+          : new Date(a.createdAt);
+      const bTime =
+        typeof bLike === "object" && bLike.likedAt
+          ? new Date(bLike.likedAt)
+          : new Date(b.createdAt);
+      return bTime - aTime;
     });
     return res.status(200).json({ likedItems });
   } catch (error) {
