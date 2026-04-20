@@ -1,9 +1,12 @@
 import { useSelector } from "react-redux";
 import Card from "./Card";
 import { HashLoader } from "react-spinners";
+import useGetLike from "../hooks/useGetLike";
+import useGetItems from "../hooks/useGetItems";
 
 const Items = () => {
   const { items, loading } = useSelector((state) => state.shop);
+  useGetLike();
   return (
     <>
       <div className="items">
