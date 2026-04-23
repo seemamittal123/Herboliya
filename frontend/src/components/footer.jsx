@@ -48,7 +48,7 @@ const Footer = () => {
           <h3>Quick Links</h3>
           <ul>
             <li>
-              <Link to="/contact" onClick={() => window.scrollTo(0, 0)}> Know More About Us </Link>
+              <Link to="/about" onClick={() => window.scrollTo(0, 0)}> Know More About Us </Link>
             </li>
             <li>
               <Link to="/contact" onClick={() => window.scrollTo(0, 0)}> Visit Store </Link>
@@ -66,16 +66,13 @@ const Footer = () => {
           <h3>Site Links</h3>
           <ul>
             <li>
-              <Link to="/contact" onClick={() => window.scrollTo(0, 0)}> Privacy Policy </Link>
+              <Link to="/about" onClick={() => window.scrollTo(0, 0)}> Privacy Policy </Link>
             </li>
             <li>
               <Link to="/contact" onClick={() => window.scrollTo(0, 0)}> Shipping Details </Link>
             </li>
             <li>
-              <Link to="/contact" onClick={() => window.scrollTo(0, 0)}> Offers Coupons </Link>
-            </li>
-            <li>
-              <Link to="/contact" onClick={() => window.scrollTo(0, 0)}> Terms & Conditions </Link>
+              <Link to="/about" onClick={() => window.scrollTo(0, 0)}> Terms & Conditions </Link>
             </li>
           </ul>
         </div>
