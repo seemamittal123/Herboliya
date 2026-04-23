@@ -11,7 +11,7 @@ const Items = () => {
   
   return (
     <>
-      <div className="items">
+      <div className="items items-wrapper">
         <div className="inner-container">
           <div className="item-card">
             {
