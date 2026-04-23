@@ -6,6 +6,7 @@ import { addToCart, removeLikedItem, addLikedItem } from "../redux/userSlice";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { serverUrl } from "../App";
+import { toast } from "react-toastify";
 
 const Card = ({ item }) => {
   const { cartItem, likedItems, userData } = useSelector((state) => state.user);
@@ -35,6 +36,7 @@ const Card = ({ item }) => {
       return;
     }
     if (quantity > 0) {
+      toast.success('Successfully add to cart');
       dispatch(
         addToCart({
           _id: item._id,
