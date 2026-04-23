@@ -17,7 +17,7 @@ import Cart from '../pages/Cart.jsx'
 import OwnerDashboard from "../components/OwnerDashboard.jsx";
 import UserDashboard from "../pages/Userdashboard.jsx";
 import Home from "../components/Home.jsx";
-export const router = createHashRouter([
+export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
