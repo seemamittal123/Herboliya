@@ -3,19 +3,19 @@ import { FaPlus } from "react-icons/fa";
 
 const faqData = [
   {
-    question: "How do I enroll in a course?",
+    question: "How do you ensure the freshness and quality of your spices?",
     answer:
-      "New had happen unable uneasy. Drawings can followed improved out sociable not. Earnestly so do instantly pretended. See general few civilly amiable pleased account carried."
+      "We source our spices directly from trusted farmers and process them in small batches to maintain maximum freshness. Each product is carefully cleaned, ground, and packed in airtight packaging to preserve aroma, flavor, and nutritional value."
   },
   {
-    question: "Can I access my courses on mobile devices?",
+    question: "Are your masalas free from additives and preservatives?",
     answer:
-      "Yes, our platform is fully responsive and works across all mobile, tablet, and desktop devices."
+      "Yes, all our masalas are 100% natural and free from artificial colors, flavors, and preservatives. We focus on delivering pure and authentic spice blends."
   },
   {
-    question: "What benefits does online education offer?",
+    question: "How should I store spices to keep them fresh for longer?",
     answer:
-      "Online education provides flexibility, accessibility, and a wide range of learning resources from anywhere in the world."
+      "Store spices in a cool, dry place away from direct sunlight and moisture. Always keep them in airtight containers to retain their flavor and potency."
   }
 ];
 
@@ -29,23 +29,16 @@ const FAQ = () => {
   return (
     <div className="faq">
       <div className="faq-wrapper">
-
-        {/* LEFT SIDE */}
         <div className="faq-left">
           <span className="tag">Frequently Asked Question</span>
           <h1>General Asked Questions</h1>
-
           <hr />
-
           <h3>Do you still have any question?</h3>
           <p>
             Quick answers to questions you may have. Can't find what you're
             looking for? Get in touch with us.
           </p>
-
-          <button>Contact Us</button>
         </div>
-
         {/* RIGHT SIDE */}
         <div className="faq-right">
           {faqData.map((item, index) => (

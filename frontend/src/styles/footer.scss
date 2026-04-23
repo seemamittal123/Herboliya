@@ -5,6 +5,7 @@
   background: $bg-2;
   color: #fff;
   padding: 100px 80px 20px;
+  margin-top: 1px;
 
   .footer-container {
     display: flex; // changed from grid → flex
@@ -18,7 +19,7 @@
     max-width: 400px;
 
     .logo {
-      height: 100px;
+      height: 110px;
     }
 
     p {

@@ -87,18 +87,11 @@
         transition: all 0.3s ease;
         border: 1px solid #f1f5f9;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-
         span {
           font-size: 32px;
         }
-
         h4 {
           margin-top: 12px;
-        }
-
-        &:hover {
-          transform: translateY(-10px) scale(1.03);
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
       }
     }

@@ -1,6 +1,8 @@
 
 import React from "react";
-import hii from "../assets/person1.jpg";
+import Founder from "../assets/person1.jpg";
+import Co_Founder from "../assets/person2.jpg";
+import Quality from "../assets/person3.webp";
 
 const About = () => {
   return (
@@ -65,19 +67,19 @@ const About = () => {
         </div>
         <div className="team-grid">
           <div className="team-card">
-            <img src={hii} alt="team" />
+            <img src={Founder} alt="team" />
             <h4>Founder Name</h4>
             <p>Founder</p>
           </div>
 
           <div className="team-card">
-            <img src={hii} alt="team" />
-            <h4>Member Name</h4>
-            <p>Operations</p>
+            <img src={Co_Founder} alt="team" />
+            <h4> CO Founder Name</h4>
+            <p>CO Founder</p>
           </div>
 
           <div className="team-card">
-            <img src={hii} alt="team" />
+            <img src={Quality} alt="team" />
             <h4>Member Name</h4>
             <p>Quality Control</p>
           </div>

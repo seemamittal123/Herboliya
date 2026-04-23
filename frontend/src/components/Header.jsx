@@ -61,15 +61,15 @@ const Header = () => {
           </div>
           <div className={toggle ? "menu open" : "menu"}>
             <ul className="header-user-inner-list">
-              <li>
+              <li onClick={() => window.scrollTo(0, 0)}>
                 <Link to="/" onClick={closeMenu}>
-                  <div className="icon">
+                  <div className="icon" >
                     <FaHome />
                   </div>
                   <p>Home</p>
                 </Link>
               </li>
-              <li>
+              <li onClick={() => window.scrollTo(0, 0)}>
                 <Link to="/items" onClick={closeMenu}>
                   <div className="icon">
                     <FaDatabase />
@@ -77,7 +77,7 @@ const Header = () => {
                   <p>Items</p>
                 </Link>
               </li>
-              <li>
+              <li onClick={() => window.scrollTo(0, 0)}>
                 <Link to="/about" onClick={closeMenu}>
                   <div className="icon">
                     <FaListAlt />
@@ -85,7 +85,7 @@ const Header = () => {
                   <p>About</p>
                 </Link>
               </li>
-              <li>
+              <li onClick={() => window.scrollTo(0, 0)}>
                 <Link to="/contact" onClick={closeMenu}>
                   <div className="icon">
                     <IoIosCall />
@@ -94,7 +94,7 @@ const Header = () => {
                 </Link>
               </li>
               {userData?.role == "admin" && (
-                <li>
+                <li onClick={() => window.scrollTo(0, 0)}>
                   <Link to="/admin-dashboard" onClick={closeMenu}>
                     <div className="icon">
                       <MdDashboard />
@@ -107,14 +107,14 @@ const Header = () => {
             {
               userData ?
                 <ul className="header-user-inner-list list">
-                  <li>
+                  <li onClick={() => window.scrollTo(0, 0)}>
                     <Link to="/likes" onClick={closeMenu}>
                       <FaHeart size={20} />
                       <p className="icon">Like</p>
                     </Link>
                   </li>
                   {userData?.role == "admin" && (
-                    <li>
+                    <li onClick={() => window.scrollTo(0, 0)}>
                       <Link to="/add-item" onClick={closeMenu}>
                         <FaPlus />
                         <div className="icon">
@@ -124,7 +124,7 @@ const Header = () => {
                     </li>
                   )}
 
-                  <li>
+                  <li onClick={() => window.scrollTo(0, 0)}>
                     <Link to="/my-orders" onClick={closeMenu}>
                       <FaClipboardList size={21} />
                       <div className="icon">
@@ -133,7 +133,7 @@ const Header = () => {
                     </Link>
                   </li>
                   {userData?.role == "user" && (
-                    <li>
+                    <li onClick={() => window.scrollTo(0, 0)}>
                       <Link to="/cart" onClick={closeMenu}>
                         <FaCartPlus size={21} />
                         <span>{cartItem?.length || 0}</span>
@@ -144,7 +144,7 @@ const Header = () => {
                     </li>
                   )}
 
-                  <li>
+                  <li onClick={() => window.scrollTo(0, 0)}>
                     <button type="button" onClick={() => { handleLogOut(); closeMenu(); }}>
                       <MdLogout size={20} />
                       <p className="icon">Log out</p>
@@ -152,8 +152,9 @@ const Header = () => {
                   </li>
                 </ul>
                 :
-                <Link to="/sign-in" onClick={closeMenu}>
-                  <button className="signin-btn">
+                <Link to="/sign-in" className="signin-btn" onClick={closeMenu}>
+                  <button>
+
                     Sign In
                   </button>
                 </Link>

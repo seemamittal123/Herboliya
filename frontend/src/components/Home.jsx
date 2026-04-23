@@ -7,35 +7,31 @@ import boxTumeric from "../assets/box.png";
 import { FaTruck, FaLeaf, FaWallet, FaRecycle } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import Card from "./Card";
+import { useNavigate } from "react-router-dom";
 
 const products = [
   {
     id: 1,
-    name: "Assorted Coffee",
-    category: "Groceries",
-    price: 35,
+    name: "Red Chilli",
+    category: "spice",
     image: Chilli,
   },
   {
     id: 2,
-    name: "Hand Sanitizer",
-    category: "Groceries",
-    price: 15,
+    name: "Tumeric",
+    category: "spice",
     image: tumeric,
   },
   {
     id: 3,
-    name: "Handpicked Red Chillies",
-    category: "Groceries",
-    price: 19,
+    name: "Tumeric Box",
+    category: "spice",
     image: boxTumeric,
   },
   {
     id: 4,
-    name: "Natural Extracted Edible Oil",
-    category: "Groceries",
-    price: 25,
-    oldPrice: 34,
+    name: "Natural",
+    category: "Dry fruits",
     sale: true,
     image: Chilli,
   },
@@ -44,26 +40,28 @@ const products = [
 const features = [
   {
     icon: <FaTruck />,
-    title: "Free Shipping",
-    subtitle: "Above $5 Only",
+    title: "Fast Delivery",
+    subtitle: "Across India",
   },
   {
     icon: <FaLeaf />,
-    title: "Certified Organic",
-    subtitle: "100% Guarantee",
+    title: "Authentic Taste",
+    subtitle: "Rich & Traditional Flavors",
   },
   {
     icon: <FaWallet />,
-    title: "Huge Savings",
-    subtitle: "At Lowest Price",
+    title: "Best Value Prices",
+    subtitle: "Quality at Fair Rates",
   },
   {
     icon: <FaRecycle />,
-    title: "Easy Returns",
-    subtitle: "No Questions Asked",
+    title: "Freshly Packed",
+    subtitle: "Sealed for Freshness",
   },
 ];
 const Home = () => {
+  const navigater = useNavigate();
+
   return (
     <>
       <section className="section1">
@@ -79,19 +77,20 @@ const Home = () => {
 
             {/* RIGHT SIDE (CONTENT) */}
             <div className="hero-right">
-              <p className="tagline">Best Quality Products</p>
+              <p className="tagline">100% Natural & Chemical-Free</p>
 
               <h1>
-                Join The Organic <br /> Movement!
+                Taste the Real <br /> Essence of Spices
               </h1>
 
               <p className="description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
-                tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+                Handpicked spices and carefully selected dry fruits, processed
+                in small batches to deliver unmatched freshness, rich flavor,
+                and authentic quality.
               </p>
 
               {/* <link to="/items"> */}
-              <button className="shop-btn">
+              <button className="shop-btn" onClick={() => navigater("/items")}>
                 <FaShoppingCart /> SHOP NOW
               </button>
             </div>
@@ -117,6 +116,23 @@ const Home = () => {
         </div>
       </div>
 
+      <section className="best-selling">
+        <div className="container">
+          <h2 className="title">Best Selling Products</h2>
+          <div className="products">
+            {products.map((product) => (
+              <div className="card" key={product.id}>
+                <div className="image-wrapper">
+                  <img src={product.image} alt={product.name} />
+                </div>
+                <p className="category">{product.category}</p>
+                <h3 className="name">{product.name}</h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="feature-bar">
         <div className="feature-container">
           {features.map((item, index) => (
@@ -128,34 +144,6 @@ const Home = () => {
               </div>
             </div>
           ))}
-        </div>
-      </section>
-
-      <section className="best-selling">
-        <div className="container">
-          <h2 className="title">Best Selling Products</h2>
-          <div className="products">
-            {products.map((product) => (
-              <div className="card" key={product.id}>
-                {/* {product.sale && <span className="badge">Sale!</span>} */}
-
-                <div className="image-wrapper">
-                  <img src={product.image} alt={product.name} />
-                </div>
-
-                <p className="category">{product.category}</p>
-
-                <h3 className="name">{product.name}</h3>
-
-                <div className="price">
-                  {product.oldPrice && (
-                    <span className="old">£{product.oldPrice}.00</span>
-                  )}
-                  <span className="current">£{product.price}.00</span>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
     </>
