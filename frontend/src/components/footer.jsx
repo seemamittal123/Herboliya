@@ -48,16 +48,16 @@ const Footer = () => {
           <h3>Quick Links</h3>
           <ul>
             <li>
-              <Link to="/"> Know More About Us </Link>
+              <Link to="/contact"> Know More About Us </Link>
             </li>
             <li>
-              <Link to="/"> Visit Store </Link>
+              <Link to="/contact"> Visit Store </Link>
             </li>
             <li>
-              <Link to="/"> Let’s Connect </Link>
+              <Link to="/contact"> Let’s Connect </Link>
             </li>
             <li>
-              <Link to="/"> Locate Stores </Link>
+              <Link to="/contact"> Locate Stores </Link>
             </li>
           </ul>
         </div>
@@ -66,16 +66,16 @@ const Footer = () => {
           <h3>Site Links</h3>
           <ul>
             <li>
-              <Link to="/"> Privacy Policy </Link>
+              <Link to="/contact"> Privacy Policy </Link>
             </li>
             <li>
-              <Link to="/"> Shipping Details </Link>
+              <Link to="/contact"> Shipping Details </Link>
             </li>
             <li>
-              <Link to="/"> Offers Coupons </Link>
+              <Link to="/contact"> Offers Coupons </Link>
             </li>
             <li>
-              <Link to="/"> Terms & Conditions </Link>
+              <Link to="/contact"> Terms & Conditions </Link>
             </li>
           </ul>
         </div>
