@@ -152,8 +152,10 @@ const Header = () => {
                   </li>
                 </ul>
                 :
-                <Link to="/sign-in" className="signin-btn" onClick={closeMenu}>
-                  Sign In
+                <Link to="/sign-in" onClick={closeMenu}>
+                  <button className="signin-btn">
+                    Sign In
+                  </button>
                 </Link>
             }
           </div>

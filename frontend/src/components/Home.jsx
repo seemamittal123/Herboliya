@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import heroimg from "../assets/heroimg.png";
-import Chilli from "../assets/chilles.jpg"
+import Chilli from "../assets/redChilli.png";
+import tumeric from "../assets/turmeric.png";
+import boxTumeric from "../assets/box.png";
 import { FaTruck, FaLeaf, FaWallet, FaRecycle } from "react-icons/fa";
-
+import { useSelector } from "react-redux";
+import Card from "./Card";
 
 const products = [
   {
@@ -18,14 +21,14 @@ const products = [
     name: "Hand Sanitizer",
     category: "Groceries",
     price: 15,
-    image: Chilli,
+    image: tumeric,
   },
   {
     id: 3,
     name: "Handpicked Red Chillies",
     category: "Groceries",
     price: 19,
-    image: Chilli,
+    image: boxTumeric,
   },
   {
     id: 4,
@@ -37,7 +40,6 @@ const products = [
     image: Chilli,
   },
 ];
-
 
 const features = [
   {
@@ -61,9 +63,7 @@ const features = [
     subtitle: "No Questions Asked",
   },
 ];
-
 const Home = () => {
-
   return (
     <>
       <section className="section1">
@@ -116,7 +116,7 @@ const Home = () => {
           </span>
         </div>
       </div>
-      
+
       <section className="feature-bar">
         <div className="feature-container">
           {features.map((item, index) => (
@@ -130,14 +130,13 @@ const Home = () => {
           ))}
         </div>
       </section>
-      
+
       <section className="best-selling">
         <div className="container">
           <h2 className="title">Best Selling Products</h2>
           <div className="products">
             {products.map((product) => (
               <div className="card" key={product.id}>
-
                 {/* {product.sale && <span className="badge">Sale!</span>} */}
 
                 <div className="image-wrapper">
@@ -159,9 +158,8 @@ const Home = () => {
           </div>
         </div>
       </section>
-      
-      </>
-  )
-}
+    </>
+  );
+};
 
-export default Home
+export default Home;

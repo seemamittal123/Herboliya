@@ -2,11 +2,11 @@
 @media (max-width:1024px) {
   .menu {
     display: none;
-    height: 100vh;
+    background-color: #fff;
+    padding: 10px;
 
     .header-user-inner-list {
       flex-direction: column;
-      background-color: #fff;
       gap: 0;
 
       li {
@@ -28,6 +28,10 @@
           }
         }
       }
+    }
+
+    .signin-btn {
+      width: 100% !important;
     }
   }
 
