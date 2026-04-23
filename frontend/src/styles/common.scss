@@ -32,6 +32,7 @@ input[type="number"] {
   appearance: none;
   -moz-appearance: textfield;
 }
+
 button {
   border: none;
   outline: none;
@@ -86,12 +87,14 @@ a {
   position: relative;
   @include flex-center;
   justify-content: left;
-  padding: 30px 0 30px 0px;
+  padding: 30px 10px;
+
   .heading {
     font-size: 18px;
     font-weight: 600;
     margin: 0 30px;
   }
+
   .back-link {
     color: $primary;
   }
