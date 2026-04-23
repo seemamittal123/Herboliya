@@ -1,33 +1,32 @@
 @use "./mixin.scss" as *;
 
-.items-wrapper {
-  margin-top: 0px;
 
-  .likes-container {
-    width: 100%;
-    min-height: 100vh;
-    padding: 0px 20px;
-    background: #f9fafb;
+.likes-container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 0px 20px;
+  background: #f9fafb;
 
-    .inner-container {
-      max-width: 1450px;
-      margin: 0 auto;
+  .inner-container {
+    max-width: 1450px;
+    margin: 0 auto;
+  }
+
+  // 🔥 ITEMS SECTION
+  .items {
+    margin-top: 0;
+
+    .item-card {
+      padding: 0;
     }
 
-    // 🔥 ITEMS SECTION
-    .items {
-      .item-card {
-        padding: 0;
-      }
-
-      // EMPTY STATE
-      .empty {
-        grid-column: 1 / -1;
-        text-align: center;
-        font-size: 22px;
-        color: #6b7280;
-        padding: 80px 0;
-      }
+    // EMPTY STATE
+    .empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      font-size: 22px;
+      color: #6b7280;
+      padding: 80px 0;
     }
   }
 }
