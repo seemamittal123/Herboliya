@@ -29,7 +29,7 @@ const Footer = () => {
         <div className="footer-column">
           <h3>Website</h3>
           <ul>
-            <li  onClick={() => window.scrollTo(0, 0)}>
+            <li onClick={() => window.scrollTo(0, 0)}>
               <Link to="/" > Home </Link>
             </li>
             <li onClick={() => window.scrollTo(0, 0)}>
@@ -48,16 +48,16 @@ const Footer = () => {
           <h3>Quick Links</h3>
           <ul>
             <li>
-              <Link to="/contact"> Know More About Us </Link>
+              <Link to="/contact" onClick={() => window.scrollTo(0, 0)}> Know More About Us </Link>
             </li>
             <li>
-              <Link to="/contact"> Visit Store </Link>
+              <Link to="/contact" onClick={() => window.scrollTo(0, 0)}> Visit Store </Link>
             </li>
             <li>
-              <Link to="/contact"> Let’s Connect </Link>
+              <Link to="/contact" onClick={() => window.scrollTo(0, 0)}> Let’s Connect </Link>
             </li>
             <li>
-              <Link to="/contact"> Locate Stores </Link>
+              <Link to="/contact" onClick={() => window.scrollTo(0, 0)}> Locate Stores </Link>
             </li>
           </ul>
         </div>
@@ -66,16 +66,16 @@ const Footer = () => {
           <h3>Site Links</h3>
           <ul>
             <li>
-              <Link to="/contact"> Privacy Policy </Link>
+              <Link to="/contact" onClick={() => window.scrollTo(0, 0)}> Privacy Policy </Link>
             </li>
             <li>
-              <Link to="/contact"> Shipping Details </Link>
+              <Link to="/contact" onClick={() => window.scrollTo(0, 0)}> Shipping Details </Link>
             </li>
             <li>
-              <Link to="/contact"> Offers Coupons </Link>
+              <Link to="/contact" onClick={() => window.scrollTo(0, 0)}> Offers Coupons </Link>
             </li>
             <li>
-              <Link to="/contact"> Terms & Conditions </Link>
+              <Link to="/contact" onClick={() => window.scrollTo(0, 0)}> Terms & Conditions </Link>
             </li>
           </ul>
         </div>
