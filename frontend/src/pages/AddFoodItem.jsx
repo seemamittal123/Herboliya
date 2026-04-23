@@ -82,7 +82,7 @@ const AddFoodItem = () => {
       );
       toast.success(data.message);
       setLoadding(false);
-      navigate("/");
+      navigate("/admin-dashboard");
     } catch (error) {
       setLoadding(false);
       console.log(error);
@@ -123,7 +123,7 @@ const AddFoodItem = () => {
 
       toast.success(data.message);
       setLoadding(false);
-      navigate("/");
+      navigate("/admin-dashboard");
     } catch (error) {
       setLoadding(false);
       console.log(error);
