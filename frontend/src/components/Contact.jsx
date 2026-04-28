@@ -41,12 +41,10 @@ const Contact = () => {
       setErrors(validationErrors);
       return;
     }
-    // Construct WhatsApp message
     const whatsappNumber = "8279895778"; // Replace with actual number, formatted without spaces
     const message = `Name: ${formData.name}\nEmail: ${formData.email}\nMessage: ${formData.message}`;
     const whatsappUrl = `https://wa.me/${whatsappNumber.replace(/\D/g, "")}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
-    // Reset form
     setFormData({ name: "", email: "", message: "" });
   };
 

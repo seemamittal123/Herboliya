@@ -13,19 +13,19 @@ const products = [
   {
     id: 1,
     name: "Red Chilli",
-    category: "spice",
+    category: "Spice",
     image: Chilli,
   },
   {
     id: 2,
     name: "Tumeric",
-    category: "spice",
+    category: "Spice",
     image: tumeric,
   },
   {
     id: 3,
     name: "Tumeric Box",
-    category: "spice",
+    category: "Spice",
     image: boxTumeric,
   },
   {
@@ -77,7 +77,7 @@ const Home = () => {
 
             {/* RIGHT SIDE (CONTENT) */}
             <div className="hero-right">
-              <p className="tagline">100% Natural & Chemical-Free</p>
+              <p className="tagline">100% Natural Taste & Chemical-Free</p>
 
               <h1>
                 Taste the Real <br /> Essence of Spices
@@ -116,6 +116,8 @@ const Home = () => {
         </div>
       </div>
 
+     
+
       <section className="best-selling">
         <div className="container">
           <h2 className="title">Best Selling Products</h2>
@@ -130,6 +132,15 @@ const Home = () => {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+ <section>
+        <div className="Background_Image">
+          <div className="opacity"></div>
+          <p className="Background_Image_line" >
+            “Good food fills the stomach, but great flavor fills the heart.
+            That’s the magic of real masala.”
+          </p>
         </div>
       </section>
 

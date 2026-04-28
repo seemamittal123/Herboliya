@@ -1,8 +1,8 @@
 
 import React from "react";
-import Founder from "../assets/person1.jpg";
-import Co_Founder from "../assets/person2.jpg";
-import Quality from "../assets/person3.webp";
+import Founder from "../assets/person1.png";
+import Co_Founder from "../assets/person2.png";
+import Quality from "../assets/person3.jpeg";
 
 const About = () => {
   return (
@@ -68,19 +68,19 @@ const About = () => {
         <div className="team-grid">
           <div className="team-card">
             <img src={Founder} alt="team" />
-            <h4>Founder Name</h4>
+            <h4>Arun Kumar</h4>
             <p>Founder</p>
           </div>
 
           <div className="team-card">
             <img src={Co_Founder} alt="team" />
-            <h4> CO Founder Name</h4>
+            <h4> Dev Verma</h4>
             <p>CO Founder</p>
           </div>
 
           <div className="team-card">
             <img src={Quality} alt="team" />
-            <h4>Member Name</h4>
+            <h4>Ankit Singh</h4>
             <p>Quality Control</p>
           </div>
         </div>
